@@ -44,13 +44,13 @@ c1('-'); //0
 c1('-'); //-1
 ```
 
-(3) Функция filterStudents уже реализована. Она принимает два аргумента: массив объектов студентов (со свойствами name и mark) и функцию-предикат (функцию, возвращающую булев тип данных), на основании которой будет происходить фильтрация:
+(3) Функция filterArr уже реализована. Она принимает два аргумента: массив объектов (со свойствами name и mark) и функцию-предикат (функцию, возвращающую булев тип данных), на основании которой будет происходить фильтрация:
 ```javascript
-function filterStudents(students, fun) {
-	return students.filter(fun);
+function filterArr(arr, fun) {
+	return arr.filter(fun);
 }
 ```
-Реализуйте функции byMarkGreater и byName, которые будут передваться функции filterStudents и на основании которых будет выполняться следующее:
+Реализуйте функции byMarkGreater и byName, которые будут передваться функции filterArr и на основании которых будет выполняться следующее:
 ```javascript
 var students = [
 	{name: 'Taras', mark: 4},
@@ -60,14 +60,24 @@ var students = [
 	{name: 'Tom', mark: 5},
 ];
 
-filterStudents(students, byMarkGreater(5)); //[{name: 'Anna', mark: 8}, {name: 'Ashley', mark: 7}];
-filterStudents(students, byName('ara')); //[{name: 'Taras', mark: 4}]
-filterStudents(students, byName('An')); //[{name: 'Anna', mark: 8}, {name: 'Anton', mark: 3}]
+filterArr(students, byMarkGreater(5)); //[{name: 'Anna', mark: 8}, {name: 'Ashley', mark: 7}];
+filterArr(students, byName('ara')); //[{name: 'Taras', mark: 4}]
+filterArr(students, byName('An')); //[{name: 'Anna', mark: 8}, {name: 'Anton', mark: 3}]
 ```
 Объяснение результатов выполнения функции:
-- filterStudents(students, byMarkGreater(5)); - все студенты, у которых оценка больше 5
-- filterStudents(students, byName('ara')); - один лишь студент, потому что подстрока 'ara' встречается только в имени одного студента - T**`ara`**s
-- filterStudents(students, byName('An')); - найдены два студента, в именах которых встречается подстрока 'An' - '**`An`**na' и '**`An`**ton'
+- filterArr(students, byMarkGreater(5)); - все студенты, у которых оценка больше 5
+- filterArr(students, byName('ara')); - один лишь студент, потому что подстрока 'ara' встречается только в имени одного студента - T**`ara`**s
+- filterArr(students, byName('An')); - найдены два студента, в именах которых встречается подстрока 'An' - '**`An`**na' и '**`An`**ton'
+При многократном вызове функции filterArr с массивом студентов, у нас заметно явное повторение - мы каждый раз передаем в функцию один и тот же массив. Поэтому, чтобы избежать повторение, можно использовать bind (на результат вашей работы это не должно никак повлиять):
+```javascript
+var filterStudents = filterArr.bind(null, students);
+```
+После чего можно работать таким образом:
+```javascript
+filterStudents(byMarkGreater(5)); //[{name: 'Anna', mark: 8}, {name: 'Ashley', mark: 7}];
+filterStudents(byName('ara')); //[{name: 'Taras', mark: 4}]
+filterStudents(byName('An')); //[{name: 'Anna', mark: 8}, {name: 'Anton', mark: 3}]
+```
 
 ___
 ⭐ - обязательное задание
