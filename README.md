@@ -68,6 +68,7 @@ filterArr(students, byName('An')); //[{name: 'Anna', mark: 8}, {name: 'Anton', m
 - filterArr(students, byMarkGreater(5)); - все студенты, у которых оценка больше 5
 - filterArr(students, byName('ara')); - один лишь студент, потому что подстрока 'ara' встречается только в имени одного студента - T**`ara`**s
 - filterArr(students, byName('An')); - найдены два студента, в именах которых встречается подстрока 'An' - '**`An`**na' и '**`An`**ton'
+
 При многократном вызове функции filterArr с массивом студентов, у нас заметно явное повторение - мы каждый раз передаем в функцию один и тот же массив. Поэтому, чтобы избежать повторение, можно использовать bind (на результат вашей работы это не должно никак повлиять):
 ```javascript
 var filterStudents = filterArr.bind(null, students);
