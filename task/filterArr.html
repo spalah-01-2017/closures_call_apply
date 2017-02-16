@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filterArr</title>
+</head>
+<body>
+
+<script>
+    function filterArr(arr, fun) {
+        return arr.filter(fun);
+    }
+
+    function byMarkGreater (num) {
+        var num = num || 0;
+        return function (student) {
+            return student.mark > num;
+        }
+    }
+
+    function byName(string) {
+        var string = string || '';
+        return function (student) {
+            if (student.name.indexOf(string) !== -1) return true;
+        }
+    }
+
+    var students = [
+        {name: 'Taras', mark: 4},
+        {name: 'Anna', mark: 8},
+        {name: 'Anton', mark: 3},
+        {name: 'Ashley', mark: 7},
+        {name: 'Tom', mark: 5},
+    ];
+
+    console.table(filterArr(students, byMarkGreater(5))); //[{name: 'Anna', mark: 8}, {name: 'Ashley', mark: 7}];
+    console.table(filterArr(students, byName('ara'))); //[{name: 'Taras', mark: 4}]
+    console.table(filterArr(students, byName('An'))); //[{name: 'Anna', mark: 8}, {name: 'Anton', mark: 3}]
+
+    var filterStudents = filterArr.bind(null, students);
+    console.table(filterStudents(byMarkGreater(5)));
+    console.table(filterStudents(byName('ara')));
+    console.table(filterStudents(byName('An')));
+    
+</script>
+
+</body>
+</html>

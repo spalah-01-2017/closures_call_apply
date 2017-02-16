@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+</head>
+<body>
+
+<p>
+    Функция add, принимающая в качестве аргумента число и возвращающая другую функцию, принимающую аргументом тоже
+    число и возвращающую сумму этих чисел:
+
+    function add(n) {
+
+    }
+
+    var add5 = add(5);
+    add5(2); //7
+    var add3 = add(3);
+    add3(add5(10)); //18
+</p>
+
+<script>
+
+    var add5 = add(5);
+    console.log(add5(2));
+    var add3 = add(3);
+    console.log(add3(add5(10)));
+
+
+    function add(n) {
+        var sum = n;
+        return function (n) {
+            return sum + n;
+        }
+    }
+
+</script>
+
+</body>
+</html>

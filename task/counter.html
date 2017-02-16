@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>counter</title>
+</head>
+<body>
+
+<p>
+    Функция counter, которая ведет себя, как показано на примерах ниже:<br><br>
+    function counter() {<br><br>
+    }<br><br>
+    var c1 = counter();<br>
+    c1(); //1<br>
+    c1(); //2<br>
+    c1(); //3<br>
+    c1('-'); //2<br>
+    c1('-'); //1<br>
+    c1('-'); //0<br>
+    c1('-'); //-1
+</p>
+
+<script>
+    var c1 = counter();
+    console.log(c1()); //1
+    console.log(c1()); //2
+    console.log(c1()); //3
+    console.log(c1('-')); //2
+    console.log(c1('-')); //1
+    console.log(c1('-')); //0
+    console.log(c1('-')); //-1
+
+    function counter() {
+        var count = 0;
+        return function (incr) {
+            var incr = (incr === '-') ?  true : false;
+            if (incr) return --count;
+            return ++count;
+        }
+    }
+</script>
+
+</body>
+</html>
